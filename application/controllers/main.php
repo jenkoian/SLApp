@@ -24,10 +24,8 @@ class Main extends CI_Controller {
 
         $this->Item_model->db->update('listItem', array('is_done'=>0), 'id = '.$this->uri->segment(4));
 
-        $return = $this->Item_model->calculatePercentage();
-
         if ($this->input->get('ajax') == 1) {
-            echo $return;
+            echo $this->Item_model->calculatePercentage();
             exit;
         }
 
@@ -41,10 +39,8 @@ class Main extends CI_Controller {
         $this->load->model('Item_model');
         $this->Item_model->db->update('listItem', array('is_done'=>1), 'id = '.$this->uri->segment(4));
 
-        $return = $this->Item_model->calculatePercentage();
-
         if ($this->input->get('ajax') == 1) {
-            echo $return;
+            echo $this->Item_model->calculatePercentage();
             exit;
         }
 
@@ -58,16 +54,15 @@ class Main extends CI_Controller {
      */
     public function add() {
         $this->load->model('Item_model');
-        $data = array('title'=>'[Click to edit]',
-                      'comments'=>'[Click to edit]',
+        $data = array('title'=>'[Click to edit title]',
+                      'comments'=>'[Click to edit description]',
                       'is_done'=>0,
                       'listId'=>1);
 
         $this->Item_model->db->insert('listItem', $data);        
 
         if ($this->input->get('ajax') == 1) {
-            $newItemHTML = $this->getLatestItemHTML();
-            echo $newItemHTML;
+            echo $this->Item_model->calculatePercentage();
             exit;
         }
 
@@ -129,7 +124,7 @@ class Main extends CI_Controller {
      * @todo Refactor this, this should be built in the JS
      * @return string
      */
-    protected function getLatestItemHTML() {
+    public function getLatestItemHTML() {
         $this->load->model('Item_model');
         
         // Get the latest addition
@@ -142,7 +137,7 @@ class Main extends CI_Controller {
 
         $new_row = $new_item[0];
         
-        return '<tr>
+        $return = '<tr>
                     <td class="id" valign="top">'.($this->Item_model->getTotalItems()).'.</td>
                     <td>
                         <span class="title" id="title_'.$new_row->id.'">'.$new_row->title.'</span>
@@ -151,7 +146,14 @@ class Main extends CI_Controller {
                     </td>
                     <td valign="top" class="status">'.anchor('main/complete/item/'.$new_row->id, '<img src="'.site_url().'images/complete.png" alt="Complete" class="complete-icon" />', 'class="complete_'.$new_row->id.'"').'</td>
                     <td valign="top" class="delete">'.anchor('main/delete/item/'.$new_row->id, '<img src="'.site_url().'images/delete.png" alt="Delete" class="delete-icon" />', 'class="delete_'.$new_row->id.'"').'</td>
-                </tr>';                
+                </tr>';   
+        
+        if ($this->input->get('ajax') == 1) {
+            echo $return;
+            exit;
+        }
+        
+        return $return;
     }
 
     /**

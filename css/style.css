@@ -11,15 +11,18 @@
 
 body {
     font: 16px/26px Helvetica, Helvetica Neue, Arial;
-    background-color: #555;
+    background-color: #FFF;
     color: #444;
 }
 
 h1 {
     font-family: 'LeagueGothicRegular', "Lucida Sans", "Trebuchet MS", Verdana, Arial, sans, sans-serif;
-    font-size: 120px;
+    font-size: 121px;
+    line-height: 100px;
     text-transform: uppercase;
     font-weight: normal;
+    text-shadow: 0px 1px 1px #CCC;
+    margin: 0.2em 0;
 }
 
 h2 {
@@ -31,21 +34,10 @@ h2 {
 
 #main {
     padding: 10px;
-    background-color: #FFF;
-    border: 1px solid #CCC;
-}
-
-.title:hover, .comments:hover {
-    background-color: #FFFFc9;
-    cursor: pointer;
-}
-
-.list_title:hover {
-    cursor: pointer;
+    background-color: #FFF;    
 }
 
 /* Percentage Bar
-
 ----------------------------------------------- */
 
 #percentage h2 {
@@ -208,9 +200,23 @@ h2 {
 
 /* Editable
 -------------------------------------------------------------- */
-form.editable input {
-    padding: 10px 0;
-    font-size: 20px;
+.list_title {
+    text-align: center;
+}
+
+.list_title:hover {
+    cursor: pointer;
+}
+
+.title:hover, .comments:hover {
+    background-color: #FFFFc9;
+    cursor: pointer;
+}
+
+.list_title form.editable input {
+    padding: 0;
+    margin: 0;
+    font-size: 50px;
     width: 300px;
     height: 100px;
     cursor: auto;

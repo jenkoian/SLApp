@@ -32,6 +32,15 @@ $(document).ready(function(){
 		});
 
 	};
+    
+    var addLatestItemNode = function() {
+        // Do ajax save, following needs to then be in the callback
+        $.get('main/getLatestItemHTML', 'ajax=1', function(new_item) {
+            if (new_item) {
+                $(new_item).hide().appendTo('#list').fadeIn();
+            }
+        });        
+    };
 	
     /**
      * Turn list title editing on for convenience for now, will work differently
@@ -106,10 +115,9 @@ $(document).ready(function(){
     $(".add_item").live('click',function(e) {
         e.preventDefault();
         // Do ajax save, following needs to then be in the callback
-        $.get($(this).attr('href'), 'ajax=1', function(new_item) {
-            if (new_item) {
-                $(new_item).hide().appendTo('#list').fadeIn();                                    
-            }
+        $.get($(this).attr('href'), 'ajax=1', function(percent) {
+            addLatestItemNode();
+            updatePercent(percent);            
         });
     });
 
