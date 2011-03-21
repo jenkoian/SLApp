@@ -180,17 +180,38 @@ h2 {
 
 /* List
 ------------------------------------------------------------- */
+#list li {
+    width: 100%;
+    position: relative;
+}
+#list .item {
+    display: block;
+    width: 40%;    
+}
+#list .status {
+    margin-left: 40%;
+    position: relative;
+    top: -40px;
+    left: 1px;
+}
 
-#list td span.comments {
+#list .delete {
+    margin-left: 10%;
+    position: relative;
+    top: -40px;
+    left: 1px;
+}
+
+#list span.comments {
     color: #555;
     font-style: italic;
 }
 
-#list td.done {
+#list .done {
     text-decoration: line-through;
 }
 
-#list td input, #list td textarea {
+#list input, #list textarea {
     width: 600px;
 }
 

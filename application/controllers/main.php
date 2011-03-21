@@ -137,16 +137,15 @@ class Main extends CI_Controller {
 
         $new_row = $new_item[0];
         
-        $return = '<tr>
-                    <td class="id" valign="top">'.($this->Item_model->getTotalItems()).'.</td>
-                    <td>
+        $return = '<li>
+                    <span class="item">
                         <span class="title" id="title_'.$new_row->id.'">'.$new_row->title.'</span>
                         <br />
                         <span class="comments" id="comments_'.$new_row->id.'">'.$new_row->comments.'</span>
-                    </td>
-                    <td valign="top" class="status">'.anchor('main/complete/item/'.$new_row->id, '<img src="'.site_url().'images/complete.png" alt="Complete" class="complete-icon" />', 'class="complete_'.$new_row->id.'"').'</td>
-                    <td valign="top" class="delete">'.anchor('main/delete/item/'.$new_row->id, '<img src="'.site_url().'images/delete.png" alt="Delete" class="delete-icon" />', 'class="delete_'.$new_row->id.'"').'</td>
-                </tr>';   
+                    </span>
+                    <span class="status">'.anchor('main/complete/item/'.$new_row->id, '<img src="'.site_url().'images/complete.png" alt="Complete" class="complete-icon" />', 'class="complete_'.$new_row->id.'"').'</span>
+                    <span class="delete">'.anchor('main/delete/item/'.$new_row->id, '<img src="'.site_url().'images/delete.png" alt="Delete" class="delete-icon" />', 'class="delete_'.$new_row->id.'"').'</span>
+                </li>';   
         
         if ($this->input->get('ajax') == 1) {
             echo $return;

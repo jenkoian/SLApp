@@ -22,7 +22,7 @@ $(document).ready(function(){
 			
 		var currentNum = 0;
 		
-		$("#list tr td.id").each(function() {
+		$("#list .id").each(function() {
 			if (parseInt($(this).text()) != parseInt(currentNum)+1) {
 				$(this).text(parseInt(currentNum)+1 +'.');
                 currentNum++;
@@ -36,6 +36,7 @@ $(document).ready(function(){
     var addLatestItemNode = function() {
         // Do ajax save, following needs to then be in the callback
         $.get('main/getLatestItemHTML', 'ajax=1', function(new_item) {
+            console.log(new_item)
             if (new_item) {
                 $(new_item).hide().appendTo('#list').fadeIn();
             }
@@ -55,7 +56,7 @@ $(document).ready(function(){
         submitdata: {ajax:1}
 	});
 	
-	$("#list tr td span.title").editable('main/edit/title', {
+	$("#list span.title").editable('main/edit/title', {
 		cancel: 'Cancel',
 		submit: 'Save',
 		name: 'title',
@@ -64,7 +65,7 @@ $(document).ready(function(){
         submitdata: {ajax:1}
 	});
 	
-	$("#list tr td span.comments").editable('main/edit/comments', {
+	$("#list span.comments").editable('main/edit/comments', {
 		type: 'textarea',
 		rows: '5',
 		cancel: 'Cancel',
@@ -76,7 +77,7 @@ $(document).ready(function(){
 	});		
 	
     // Mark an item as complete/uncomplete
-	$("#list tr td.status a").live('click', function(e) {
+	$("#list .status a").live('click', function(e) {
         e.preventDefault();
 
         var link = this;
@@ -122,7 +123,7 @@ $(document).ready(function(){
     });
 
     // Delete an item
-	$("#list tr td.delete a").live('click', function(e) {
+	$("#list .delete a").live('click', function(e) {
         e.preventDefault();
 
         var link = this;
