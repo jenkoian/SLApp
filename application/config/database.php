@@ -42,11 +42,11 @@ $active_group = 'default';
 $active_record = TRUE;
 
 // TODO: Use msyql
-$db['default']['hostname'] = '';
-$db['default']['username'] = '';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = APPPATH.'db/testdb.sqlite';
-$db['default']['dbdriver'] = 'sqlite';
+$db['default']['database'] = 'slapp';
+$db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

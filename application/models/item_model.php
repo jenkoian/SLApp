@@ -13,7 +13,7 @@ class Item_model extends CI_Model {
      * @return array 
      */
     public function get($id) {
-        return $this->db->get_where('listItem', array('listId'=>$id))->result();
+        return $this->db->get_where('list_item', array('list_id'=>$id))->result();
     }
     
     /**
@@ -22,7 +22,10 @@ class Item_model extends CI_Model {
      */
     public function getListTitle() {
         $list = $this->db->get_where('list', array('id'=>1))->result();
-
+        
+        if (empty($list)) {
+            return;
+        }
         return $list[0]->title;
     }
 
@@ -37,7 +40,7 @@ class Item_model extends CI_Model {
      * @return int
      */
     public function getTotalDoneItems() {
-        return count($this->db->get_where('listItem', array('listId'=>1, 'is_done'=>1))->result());
+        return count($this->db->get_where('list_item', array('list_id'=>1, 'is_done'=>1))->result());
     }
 
     /**

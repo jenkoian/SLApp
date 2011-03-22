@@ -33,7 +33,7 @@ h2 {
 }
 
 #main {
-    padding: 10px;
+    padding: 10px 40px;
     background-color: #FFF;    
 }
 
@@ -178,11 +178,12 @@ h2 {
     background-image: none;
 }
 
-/* List
+/* Lists
 ------------------------------------------------------------- */
 #list li {
     width: 100%;
     position: relative;
+    font-size: 110%;
 }
 #list .item {
     display: block;
@@ -241,4 +242,42 @@ h2 {
     width: 300px;
     height: 100px;
     cursor: auto;
+}
+
+/* Home
+----------------------------------------------------------------*/
+#home h1 {
+    font-size: 400px;
+    line-height: 180px;
+    text-align: center;
+}
+
+#home .subtitle {
+    text-align: center;    
+}
+
+#home .screenshot {
+    margin: 10px 0;
+    float: left;
+}
+
+#home .screenshot img {
+    border: 1px solid #CCC;
+}
+
+#home .blurb {
+    float: right;
+}
+
+#home .blurb ul {
+    list-style-image: url(../images/uncomplete.png);
+}
+
+#home .blurb li {
+    font-size: 24px;
+    padding: 0 0 40px 10px;    
+}
+
+#home .blurb li:last-child {
+    padding: 0 0 0px 10px;
 }
