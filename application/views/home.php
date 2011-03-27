@@ -1,5 +1,5 @@
 <div id="home">
-    <h1><?php echo $title; ?></h1>
+    <h1><?php echo anchor('home', $title); ?></h1>
 
     <div class="screenshot">
         <img src="http://placekitten.com/650/670" alt="SLAPP!" />
@@ -15,6 +15,8 @@
             <li>Quick and SIMPLE</li>            
         </ul>
         
-        <div class="signup"><a href="#"><img src="<?php echo site_url(); ?>images/signup button.jpg" alt="Sign up!" /></a></div>
+        <div id="signup">
+            <?php echo anchor('registration','Sign up &raquo;','class="large button"'); ?>
+        </div>
     </div>
 </div>

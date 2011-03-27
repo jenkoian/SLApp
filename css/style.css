@@ -1,3 +1,17 @@
+/* 
+	Resets defualt browser settings
+	reset.css
+*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,font,img,ins,kbd,q,s,samp,small,strike,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
+:focus { outline:0; }
+a:active { outline:none; }
+body { line-height:1; color:black; background:white; }
+ol,ul { list-style:none; }
+table { border-collapse:separate; border-spacing:0; }
+caption,th,td { text-align:left; font-weight:normal; }
+blockquote:before,blockquote:after,q:before,q:after { content:""; }
+blockquote,q { quotes:"" ""; }
+
 @font-face {
     font-family: 'LeagueGothicRegular';
     src: url('../fonts/League_Gothic-webfont.eot');
@@ -10,19 +24,27 @@
 }
 
 body {
-    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+    font: 16px/1.231 Helvetica, Helvetica Neue, Arial;
     background-color: #FFF;
-    color: #444;
+    color: #444;       
+}
+
+p {
+    margin-bottom: 1.4em;    
 }
 
 h1 {
     font-family: 'LeagueGothicRegular', "Lucida Sans", "Trebuchet MS", Verdana, Arial, sans, sans-serif;
     font-size: 121px;
-    line-height: 100px;
     text-transform: uppercase;
     font-weight: normal;
     text-shadow: 0px 1px 1px #CCC;
-    margin: 0.2em 0;
+    margin: 0;
+}
+
+h1 a {
+    color: #444;
+    text-decoration: none;
 }
 
 h2 {
@@ -33,8 +55,28 @@ h2 {
 }
 
 #main {
-    padding: 10px 40px;
-    background-color: #FFF;    
+    padding: 0 40px 10px 40px;
+    background-color: #FFF;       
+}
+
+#main #content p {
+    font-size: 1.8em;
+    line-height: 1.5em;  
+}
+
+
+/* Top links
+------------------------------------------------ */
+#main ul#top-links {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    list-style-type: none;
+}
+
+#main ul#top-links li {
+    float: left;
+    margin: 10px;
 }
 
 /* Percentage Bar
@@ -246,9 +288,9 @@ h2 {
 
 /* Home
 ----------------------------------------------------------------*/
+#content h1,
 #home h1 {
-    font-size: 400px;
-    line-height: 180px;
+    font-size: 400px;    
     text-align: center;
 }
 
@@ -257,7 +299,6 @@ h2 {
 }
 
 #home .screenshot {
-    margin: 10px 0;
     float: left;
 }
 
@@ -280,4 +321,121 @@ h2 {
 
 #home .blurb li:last-child {
     padding: 0 0 0px 10px;
+}
+
+#home #signup {
+    margin-top: 80px;
+}
+
+/* Buttons
+-----------------------------------------------------------------*/
+a.button {
+    color: #444;
+    text-decoration: none;
+}
+
+.button {
+    background:url(../images/overlay.png) repeat-x center #ffcc00;
+    background-color:rgba(255,204,0,1);
+    border:1px solid #ffcc00;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border-bottom:1px solid #9f9f9f;
+    -moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+    -webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+    cursor:pointer;  
+    color: #444;
+}
+
+.button {
+    font-size: 13px;
+    font-weight: bold;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.button:hover {
+    background-color:rgba(255,204,0,0.8);
+}
+
+.button:active{position:relative;top:2px;}
+
+/* Sizes ---------- */
+.small.button {
+font-size: 11px;
+}
+.medium.button {
+font-size: 13px;
+}
+.large.button {
+font-size: 54px;
+padding: 16px 28px 18px;
+}
+
+/* Forms
+----------------------------------------------------*/
+div.form {    
+    overflow: hidden;    
+    font-size: 1.8em;
+}
+
+div.form .formleft {
+    text-align: left;
+    padding: 0;
+    clear: both;
+    margin: 5px 0;   
+}
+
+div.form .formright {
+    text-align: left;
+    padding: 0;
+    margin: 5px 0;    
+}
+
+div.form input,
+div.form textarea {
+    border: 1pz solid #444;
+    padding: 15px;
+    width: 400px;
+    font-size: 1.2em
+}
+
+div.form input.button {
+    width: 435px;
+}
+
+div.form input.formerror,
+div.form textarea.formerror {
+    border: 1px solid red;
+}
+
+div.form.registration {
+    float: left;
+    border-right: 1px solid #444;
+    padding-right: 14%;
+}
+
+div.form.login {
+    float: right;  
+    padding-left: 10%;
+}
+
+/* Tab menu
+---------------------------------------------------------------------*/
+#tabMenu {
+    margin:0;
+    padding:0 0 0 0;
+    list-style:none;
+}
+ 
+#tabMenu li {
+    float:left;
+/*    height:32px;
+    width:39px;*/
+    cursor:pointer;
+    cursor:hand;
+    margin: 0 15px 0 0;
 }

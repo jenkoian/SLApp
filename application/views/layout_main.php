@@ -7,7 +7,7 @@
         <title>
         <?php
         if (isset($title_for_layout)) {
-            echo $title_for_layout;
+            echo $title_for_layout.' - SLAPP!';
         } else {
         ?>
             SLAPP!
@@ -23,6 +23,10 @@
     </head> 
     <body> 
         <div id="main">
+            <?php
+            include_once 'partial/top_nav.php';
+            ?>
+            
             <?php
             echo $content_for_layout;
             ?>
