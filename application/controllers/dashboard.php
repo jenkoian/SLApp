@@ -13,7 +13,29 @@ class Dashboard extends User_Controller {
     }
     
     public function index() {
-        $this->layout->view('dashboard', $this->data);
+        $this->lists();
+    }
+    
+    public function lists() {
+        // Are they trying to add a list?
+        if ($this->uri->segment(3) == 'add') {
+            return $this->addList();
+        }
+        
+        // Get all lists for the user
+        $this->load->model('user_model');
+        $this->data['lists'] = $this->user_model->getLists($this->session->userdata('id'));
+                
+        $this->layout->view('dashboard', $this->data);                
+    }
+    
+    protected function addList() {
+        $this->load->model('list_model');        
+        
+        $this->list_model->addList($this->session->userdata('id'));
+        
+        $this->session->set_flashdata('success', 'You have successfully added a new list');
+        redirect('dashboard/lists');
     }
     
     private function loadData() {

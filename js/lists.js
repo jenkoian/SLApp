@@ -35,8 +35,7 @@ $(document).ready(function(){
     
     var addLatestItemNode = function() {
         // Do ajax save, following needs to then be in the callback
-        $.get('main/getLatestItemHTML', 'ajax=1', function(new_item) {
-            console.log(new_item)
+        $.get('' + CI.base_url + 'lists/getLatestItemHTML', 'ajax=1', function(new_item) {            
             if (new_item) {
                 $(new_item).hide().appendTo('#list').fadeIn();
             }
@@ -47,16 +46,16 @@ $(document).ready(function(){
      * Turn list title editing on for convenience for now, will work differently
      * in long run
      */
-	$(".list_title").editable('main/edit/list_title', {
+	$(".list_title").editable(CI.base_url + 'lists/edit/' + CI.listId + '/list_title', {        
 		cancel: 'Cancel',
 		submit: 'Save',
 		name: 'list_title',
 		cssclass: 'editable',
 		tooltip: 'Click to edit (use [total] for total of number of items)',
-        submitdata: {ajax:1}
-	});
+        submitdata: {ajax:1}       
+    });   
 	
-	$("#list span.title").editable('main/edit/title', {
+	$("#list span.title").editable(CI.base_url + 'lists/edit/' + CI.listId + '/title', {
 		cancel: 'Cancel',
 		submit: 'Save',
 		name: 'title',
@@ -65,7 +64,7 @@ $(document).ready(function(){
         submitdata: {ajax:1}
 	});
 	
-	$("#list span.comments").editable('main/edit/comments', {
+	$("#list span.comments").editable(CI.base_url + 'lists/edit/' + CI.listId + '/comments', {
 		type: 'textarea',
 		rows: '5',
 		cancel: 'Cancel',
@@ -73,7 +72,7 @@ $(document).ready(function(){
 		name: 'comments',
 		cssclass: 'editable',
 		tooltip: 'Click to edit',
-        submitdata: {ajax:1}
+        submitdata: {ajax:1}       
 	});		
 	
     // Mark an item as complete/uncomplete
@@ -82,13 +81,13 @@ $(document).ready(function(){
 
         var link = this;
         var is_done = 1;
-        var new_text = '<img src="images/uncomplete.png" alt="Uncomplete" class="uncomplete-icon" />';
+        var new_text = '<img src="' + CI.base_url + 'images/uncomplete.png" alt="Uncomplete" class="uncomplete-icon" />';
         var new_url = $(this).attr('href');
         var add_remove_class = 'add';
 
         if ($(this).children(0).attr('class') == 'uncomplete-icon') {
             var is_done = 0;
-            var new_text = '<img src="images/complete.png" alt="Complete" class="complete-icon" />';
+            var new_text = '<img src="' + CI.base_url + 'images/complete.png" alt="Complete" class="complete-icon" />';
             var new_url = $(this).attr('href').replace('uncomplete', 'complete');
             var add_remove_class = 'remove';
         }

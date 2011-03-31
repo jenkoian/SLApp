@@ -16,10 +16,11 @@ class Login extends CI_Controller {
         } else {
             // if user is valid
             $this->load->model('login_model');
-            $validUser = $this->login_model->validateUser();
+            $validUserId = $this->login_model->validateUser();
             
-            if ($validUser) {
+            if ($validUserId) {
                 $data = array(
+                        'id' => $validUserId,
                         'username' => $this->input->post('username'),
                         'activeUser' => true
                 );

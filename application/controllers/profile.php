@@ -11,7 +11,7 @@ class Profile extends User_Controller {
     
     public function index() {
         
-        $this->load->model('profile_model', 'profile');
+        $this->load->model('user_model', 'profile');
         
         if ($this->form_validation->run('editUser') === FALSE) {
             $userinfo = $this->profile->getUserInfo($this->session->userdata('username'));

@@ -15,7 +15,8 @@ class Registration_Model extends CI_Model {
         );
         
         $this->db->insert('user', $data);
-        return null;
+        
+        return $this->db->insert_id();
     }
     
     public function verifyUniqueUsername($username) {

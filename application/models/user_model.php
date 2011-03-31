@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Profile_Model extends CI_Model {
+class User_Model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -22,6 +22,13 @@ class Profile_Model extends CI_Model {
         
         $q->free_result();
         return $data;
+    }
+    
+    public function getLists($userId) {        
+        $this->db->where('user_id', $userId);    
+        $this->db->join('list', 'list.id = user_lists.list_id');
+        
+        return $this->db->get('user_lists');                 
     }
     
     public function updateUserInfo()  {

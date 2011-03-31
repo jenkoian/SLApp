@@ -15,9 +15,10 @@ class Registration extends CI_Controller {
         } else {
             // If validation passes, information will be passed along to the MODEL to be processed and the account will be created.
             $this->load->model('registration_model');
-            $this->registration_model->addUser();
+            $validUserId = $this->registration_model->addUser();
             
             $data = array(
+                    'id' => $validUserId,
                     'username' => $this->input->post('username'),
                     'activeUser' => true
             );            

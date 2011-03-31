@@ -34,12 +34,12 @@ p {
 }
 
 h1 {
-    font-family: 'LeagueGothicRegular', "Lucida Sans", "Trebuchet MS", Verdana, Arial, sans, sans-serif;
-    font-size: 121px;
+    font-family: 'LeagueGothicRegular', "Lucida Sans", "Trebuchet MS", Verdana, Arial, sans, sans-serif;    
     text-transform: uppercase;
     font-weight: normal;
     text-shadow: 0px 1px 1px #CCC;
     margin: 0;
+    font-size: 121px;
 }
 
 h1 a {
@@ -64,6 +64,9 @@ h2 {
     line-height: 1.5em;  
 }
 
+.breaker {
+    clear: both;
+}
 
 /* Top links
 ------------------------------------------------ */
@@ -222,10 +225,16 @@ h2 {
 
 /* Lists
 ------------------------------------------------------------- */
+ol#list {
+    list-style-type: decimal;
+    padding: 20px 0;
+    padding-left: 20px;   
+}
 #list li {
     width: 100%;
     position: relative;
     font-size: 110%;
+    margin-bottom: 1.4em;
 }
 #list .item {
     display: block;
@@ -264,8 +273,14 @@ h2 {
 
 /* Editable
 -------------------------------------------------------------- */
+h2.list_title {
+    text-shadow: 0px 1px 1px #CCC;
+    margin: 0;
+    font-size: 121px;    
+}
+
 .list_title {
-    text-align: center;
+    width: 80%;
 }
 
 .list_title:hover {
@@ -438,4 +453,14 @@ div.form.login {
     cursor:pointer;
     cursor:hand;
     margin: 0 15px 0 0;
+}
+
+/* Dashboard
+------------------------------------------------------------------------*/
+div.lists-box {
+    margin: 20px 0;
+}
+
+p.add_list {
+    margin-top: 20px;
 }
