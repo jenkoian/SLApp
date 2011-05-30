@@ -394,7 +394,7 @@ padding: 16px 28px 18px;
 ----------------------------------------------------*/
 div.form {    
     overflow: hidden;    
-    font-size: 1.8em;
+    font-size: 1.8em;    
 }
 
 div.form .formleft {
@@ -437,6 +437,10 @@ div.form.login {
     float: right;  
     padding-left: 10%;
 }
+
+div.form.search {
+    clear: left;
+}   
 
 /* Tab menu
 ---------------------------------------------------------------------*/

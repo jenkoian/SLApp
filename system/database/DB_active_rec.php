@@ -478,9 +478,10 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	array	The values searched on
 	 * @return	object
 	 */
-	function where_in($key = NULL, $values = NULL)
+	function where_in($key = NULL, $values = NULL, $escape = NULL)
 	{
-		return $this->_where_in($key, $values);
+		$escape = (is_bool($escape)) ? $escape : TRUE;
+		return $this->_where_in($key, $values, FALSE, 'AND ', $escape);
 	}
 
 	// --------------------------------------------------------------------
@@ -551,7 +552,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	string
 	 * @return	object
 	 */
-	function _where_in($key = NULL, $values = NULL, $not = FALSE, $type = 'AND ')
+	function _where_in($key = NULL, $values = NULL, $not = FALSE, $type = 'AND ', $escape = TRUE)
 	{
 		if ($key === NULL OR $values === NULL)
 		{
@@ -567,7 +568,14 @@ class CI_DB_active_record extends CI_DB_driver {
 
 		foreach ($values as $value)
 		{
-			$this->ar_wherein[] = $this->escape($value);
+                        if ($escape === TRUE)
+                        {
+                                $this->ar_wherein[] = $this->escape($value);
+                        }
+                        else
+                        {
+                                $this->ar_wherein[] = $value;
+                        }
 		}
 
 		$prefix = (count($this->ar_where) == 0) ? '' : $type;

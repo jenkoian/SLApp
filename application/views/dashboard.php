@@ -6,8 +6,9 @@
     ?>
     
     <ul id="tabMenu">
-        <li class="lists selected"><?php echo anchor('dashboard/lists','your lists'); ?></li>
-        <li class="slapps"><?php echo anchor('dashboard/slapps','your slapps!'); ?></li>        
+        <li class="lists selected"><?php echo anchor('dashboard/lists','lists'); ?></li>
+        <li class="slapps"><?php echo anchor('dashboard/slapps','slapps'); ?></li>        
+        <li class="slapped"><?php echo anchor('dashboard/slapped','slapped'); ?></li>        
     </ul>
     
     <div class="breaker"></div>
@@ -21,7 +22,16 @@
                     <?php                    
                     foreach ($lists->result() as $list) {                        
                     ?>                    
-                        <li><?php echo anchor('lists/view/'.$list->list_id, $list->title); ?></li>                             
+                        <li>
+                            <span class="item">
+                                <span class="title"><?php echo anchor('lists/view/'.$list->list_id, $list->title); ?></span>
+                                <br />
+                                <span class="comments">&nbsp;</span>
+                            </span>
+                            <span class="status"><?php echo anchor('slapp/lists/'.$list->list_id, '<img src="'.site_url().'images/slapp.png" alt="Slapp" class="slapp-icon" />', 'class="slapp_'.$list->list_id.'"'); ?></span>
+                            <span class="delete"><?php echo anchor('dashboard/lists/delete/'.$list->list_id, '<img src="'.site_url().'images/delete.png" alt="Delete" class="delete-icon" />', 'class="delete_'.$list->list_id.'"'); ?></span>
+                        </li>  
+                        
                     <?php
                     }
                     ?>
@@ -34,4 +44,48 @@
         }
         ?>
     </div>
+    
+    <div class="slapps-box">
+        <?php    
+        if (isset($slapps)) {
+            if (!empty($slapps)) {
+            ?>   
+                <ol id="list">
+                    <?php                    
+                    foreach ($slapps->result() as $slapp) {                        
+                    ?>                    
+                        <li><?php echo anchor('slapps/view/'.$slapp->list_id, $slapp->title); ?></li>                             
+                    <?php
+                    }
+                    ?>
+                </ol>
+            <?php
+            }
+            ?>            
+        <?php
+        }
+        ?>
+    </div>    
+    
+    <div class="slapps-box">
+        <?php    
+        if (isset($slapped)) {
+            if (!empty($slapped)) {
+            ?>   
+                <ol id="list">
+                    <?php                    
+                    foreach ($slapped as $slapp) {                        
+                    ?>                    
+                        <li><?php echo anchor('slapps/view/'.$slapp->list_id, $slapp->title); ?> (<?php echo $slapp->username; ?>)</li>                             
+                    <?php
+                    }
+                    ?>
+                </ol>
+            <?php
+            }
+            ?>            
+        <?php
+        }
+        ?>
+    </div>     
 </div>
