@@ -12,7 +12,7 @@ class Slapp_Model extends CI_Model {
      * @param bool $isOwner
      * @return int $listId
      */
-    public function slappUser(User_Model $userModel, $username, $listId) {                   
+    public function slappUser(User_Model $userModel, $username, $listId, $ownerId) {                   
         
         $userInfo = $userModel->getUserInfo($username);       
         
@@ -24,7 +24,7 @@ class Slapp_Model extends CI_Model {
         $user_data = array (
             'user_id' => $userInfo['id'],
             'list_id' => $listId,
-            'is_owner' => 0
+            'owner_id' => $ownerId
         );
         
         $this->db->insert('user_lists', $user_data);

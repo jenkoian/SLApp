@@ -187,6 +187,8 @@ class Lists extends CI_Controller {
         $this->data['percentage'] = $this->list->calculatePercentage();
         $this->data['items'] = $this->list->getItems();
         $this->data['listId'] = $this->listId;
+        $this->data['ownerId'] = $this->list->getOwner();
+        $this->data['userId'] = $this->session->userdata('id');
     }
 
 }

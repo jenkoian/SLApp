@@ -36,7 +36,7 @@ class User_Model extends CI_Model {
      */
     public function getLists($userId) {        
         $this->db->where('user_id', $userId);    
-        $this->db->where('is_owner', 1); 
+        $this->db->where('owner_id', $userId); 
         $this->db->join('list', 'list.id = user_lists.list_id');
         
         return $this->db->get('user_lists');                 
@@ -49,7 +49,7 @@ class User_Model extends CI_Model {
      */
     public function getSlapps($userId) {        
         $this->db->where('user_id', $userId);    
-        $this->db->where('is_owner', 0); 
+        $this->db->where('owner_id != ', $userId); 
         $this->db->join('list', 'list.id = user_lists.list_id');
         
         return $this->db->get('user_lists');                 
@@ -62,19 +62,13 @@ class User_Model extends CI_Model {
      */
     public function getSlapped($userId) {        
         
-        $this->db->select('user_id');
+        $this->db->select();
         $this->db->from('user_lists');
         $this->db->where('user_id != ', $userId);
-        $this->db->where('is_owner', 0);        
-        
-        $subQuery = $this->db->_compile_select();
-        
-        $this->db->_reset_select();
-        
-        $this->db->where_in('user_id', $subQuery, false);    
+        $this->db->where('owner_id', $userId);            
         $this->db->join('list', 'list.id = user_lists.list_id');  
                 
-        return $this->db->get('user_lists');                 
+        return $this->db->get();                 
     }    
     
     /**

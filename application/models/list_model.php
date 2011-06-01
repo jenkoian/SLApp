@@ -43,8 +43,11 @@ class List_model extends CI_Model {
         $user_data = array (
             'user_id' => $userId,
             'list_id' => $listId,
-            'is_owner' => $isOwner
         );
+        
+        if ($isOwner) {
+            $user_data['owner_id'] = $userId;
+        }
         
         $this->db->insert('user_lists', $user_data);
         
@@ -60,7 +63,7 @@ class List_model extends CI_Model {
     public function deleteList($listId, $userId) {
      
         // Check user is owner
-        if ($this->isListOwner($userId)) {
+        if ($this->isListOwner($listId, $userId)) {
             $this->db->delete('list',array('id'=>$listId));
             $this->db->delete('user_lists',array('list_id'=>$listId));
             
@@ -121,7 +124,11 @@ class List_model extends CI_Model {
      * @return int 
      */
     public function isListOwner($listId, $userId) {        
-        return count($this->db->get_where('user_lists', array('list_id'=>$listId, 'user_id'=>$userId, 'is_owner'=>1))->result());      
+                
+        $this->db->where('list_id',$listId);
+        $this->db->where('owner_id', $userId);
+        
+        return $this->db->count_all_results('user_lists');          
     }
     
     /**
@@ -136,5 +143,21 @@ class List_model extends CI_Model {
         $result =  $this->db->get('list')->row();               
         
         return $result->title;
+    }
+    
+    public function getOwner() {
+        
+        if (!$this->listId) {
+            throw new Exception('No list id set');
+        }
+        
+        $this->db->select('owner_id');
+        $this->db->from('user_lists');
+        $this->db->where('list_id',$this->listId);        
+        
+        $result = $this->db->get()->row();
+        
+        return $result->owner_id;
+        
     }
 }

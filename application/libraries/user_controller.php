@@ -9,7 +9,7 @@ class User_Controller extends CI_Controller {
     public function activeUser() {
         $activeUser = $this->session->userdata('activeUser');
         
-        if(!isset($activeUser) || $activeUser !=true)  {
+        if(!isset($activeUser) || $activeUser != true)  {
             $this->session->flashdata('error', 'You must login before going to this page');
             redirect('login');
         }

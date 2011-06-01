@@ -34,7 +34,7 @@ class Dashboard extends User_Controller {
         
         switch ($this->uri->segment(3)) {
             case 'add':
-                return $this->addList();
+                return $this->addList(1);
             break;
         
             case 'delete':
@@ -45,7 +45,7 @@ class Dashboard extends User_Controller {
         
         // Get all lists for the user
         $this->load->model('user_model');
-        $this->data['lists'] = $this->user_model->getLists($this->session->userdata('id'));
+        $this->data['lists'] = $this->user_model->getLists($this->session->userdata('id'))->result();
                 
         $this->layout->view('dashboard', $this->data);                
     }
@@ -57,7 +57,14 @@ class Dashboard extends User_Controller {
         
         // Get all lists for the user
         $this->load->model('user_model');
-        $this->data['slapps'] = $this->user_model->getSlapps($this->session->userdata('id'));        
+        $slapps = $this->user_model->getSlapps($this->session->userdata('id'));     
+        
+        $this->data['slapps'] = $slapps->result();    
+        
+        foreach ($this->data['slapps'] as $k=>$slapp) {
+            $this->data['slapps'][$k]->username = $this->user_model->userIdToUsername($slapp->user_id);
+        }
+                                        
         $this->layout->view('dashboard', $this->data);
     }
     
@@ -102,7 +109,7 @@ class Dashboard extends User_Controller {
         $deleted = $this->list_model->deleteList($listId, $this->session->userdata('id'));
         
         if ($deleted) {                
-            $this->session->set_flashdata('success', 'You have successfully added a new list');
+            $this->session->set_flashdata('success', 'You have successfully deleted a list');
         } else {
             $this->session->set_flashdata('failure', 'List could not be deleted');
         }

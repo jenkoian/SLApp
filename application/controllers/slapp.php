@@ -53,7 +53,7 @@ class Slapp extends User_Controller {
             redirect('dashboard/lists');   
         }                
         
-        if ($this->slapp_model->slappUser($this->user_model, $username, $listId)) {
+        if ($this->slapp_model->slappUser($this->user_model, $username, $listId, $this->session->userdata('id'))) {
             $this->session->set_flashdata('success', 'You have successfully slapped '.$this->list_model->listIdToListTitle($listId).' on to user '.$username);
             redirect('dashboard/lists');  
         } else {

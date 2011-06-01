@@ -15,12 +15,12 @@
     
     <div class="lists-box">
         <?php    
-        if (isset($lists)) {
+        if (isset($lists)) {                        
             if (!empty($lists)) {
             ?>   
                 <ol id="list">
                     <?php                    
-                    foreach ($lists->result() as $list) {                        
+                    foreach ($lists as $list) {                        
                     ?>                    
                         <li>
                             <span class="item">
@@ -37,8 +37,12 @@
                     ?>
                 </ol>
             <?php
-            }
+            } else {
             ?>
+                <p><em>You have not created any lists. Why not <?php echo anchor('dashboard/lists/add', 'add one now', 'class="add_list"'); ?>?</em></p>
+            <?php
+            }
+            ?> 
             <p class="add_list"><?php echo anchor('dashboard/lists/add', '<img src="'.site_url().'images/add.png" alt="+" align="absmiddle" />Add list', 'class="add_list"'); ?></p>
         <?php
         }
@@ -52,16 +56,20 @@
             ?>   
                 <ol id="list">
                     <?php                    
-                    foreach ($slapps->result() as $slapp) {                        
+                    foreach ($slapps as $slapp) {                        
                     ?>                    
-                        <li><?php echo anchor('slapps/view/'.$slapp->list_id, $slapp->title); ?></li>                             
+                        <li><?php echo anchor('lists/view/'.$slapp->list_id, $slapp->title); ?> (slapped by <?php echo $slapp->username; ?>)</li>                             
                     <?php
                     }
                     ?>
                 </ol>
             <?php
+            } else {
+            ?>
+                <p><em>You have not been slapped by anyone yet</em></p>
+            <?php
             }
-            ?>            
+            ?>           
         <?php
         }
         ?>
@@ -76,16 +84,20 @@
                     <?php                    
                     foreach ($slapped as $slapp) {                        
                     ?>                    
-                        <li><?php echo anchor('slapps/view/'.$slapp->list_id, $slapp->title); ?> (<?php echo $slapp->username; ?>)</li>                             
+                        <li><?php echo anchor('lists/view/'.$slapp->list_id, $slapp->title); ?> (you slapped <?php echo $slapp->username; ?>)</li>                             
                     <?php
                     }
                     ?>
                 </ol>
             <?php
+            } else {
+            ?>
+                <p><em>You have not slapped anyone yet</em></p>
+            <?php
             }
-            ?>            
+            ?>           
         <?php
-        }
+        } 
         ?>
     </div>     
 </div>

@@ -46,7 +46,7 @@ $(document).ready(function(){
      * Turn list title editing on for convenience for now, will work differently
      * in long run
      */
-	$(".list_title").editable(CI.base_url + 'lists/edit/' + CI.listId + '/list_title', {        
+	$('.list_title.editable').editable(CI.base_url + 'lists/edit/' + CI.listId + '/list_title', {        
 		cancel: 'Cancel',
 		submit: 'Save',
 		name: 'list_title',
@@ -55,7 +55,7 @@ $(document).ready(function(){
         submitdata: {ajax:1}       
     });   
 	
-	$("#list span.title").editable(CI.base_url + 'lists/edit/' + CI.listId + '/title', {
+	$('#list span.title.editable').editable(CI.base_url + 'lists/edit/' + CI.listId + '/title', {
 		cancel: 'Cancel',
 		submit: 'Save',
 		name: 'title',
@@ -64,7 +64,7 @@ $(document).ready(function(){
         submitdata: {ajax:1}
 	});
 	
-	$("#list span.comments").editable(CI.base_url + 'lists/edit/' + CI.listId + '/comments', {
+	$("#list span.comments.editable").editable(CI.base_url + 'lists/edit/' + CI.listId + '/comments', {
 		type: 'textarea',
 		rows: '5',
 		cancel: 'Cancel',
